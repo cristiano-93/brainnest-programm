@@ -110,6 +110,13 @@ rounded corners on images
   margin: auto;
   padding-bottom: 20px;
 }
+.week3 {
+  border: 2px solid rgb(98, 98, 98);
+  border-radius: 15px;
+  width: 40%;
+  margin: 30px auto;
+  padding: 20px 0;
+}
 .headings {
   text-align: center;
   width: fit-content;
