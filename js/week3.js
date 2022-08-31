@@ -63,64 +63,84 @@ function isEven(number) {
 // input 1 number and function will return if its even or odd
 isEven(6);
 
-
-
-
-
 // ------ Main JavaScript Project ------
 
-let userChoice = "";
+let userScore = 0;
+let computerScore = 0;
 
-function computerPlay() {
-  var userChoice = prompt("Do you choose rock, paper or scissors?").toLowerCase();
-
+// function assigning random choice to computer
+function getComputerPlay() {
   var computerChoice = Math.floor(Math.random() * 3);
   if (computerChoice == 0) {
     computerChoice = "rock";
+    return computerChoice;
   } else if (computerChoice == 1) {
     computerChoice = "paper";
+    return computerChoice;
   } else if (computerChoice == 2) {
     computerChoice = "scissors";
-  }
-  // logging choices
-  console.log("You have chosen: " + " " + userChoice + " " + "and the computer choose: " + "" + computerChoice);
-  function compare(choice1, choice2) {
-    // Other scenarios
-    if (choice1 === "rock") {
-      if (choice2 === "scissors") {
-        return "rock wins";
-      } else {
-        return "paper wins";
-      }
-    }
-    if (choice1 === "paper") {
-      if (choice2 === "rock") {
-        return "paper wins";
-      } else {
-        return "scissors wins";
-      }
-    }
-    if (choice1 === "scissors") {
-      if (choice2 === "paper") {
-        return "scissors wins";
-      } else {
-        return "rock wins";
-      }
-    }
-  }
-  // play again if tie
-  if (userChoice === computerChoice) {
-    // remove computerPlay function and change text to run only once
-    console.log("its a tie!  Play again!");
-    computerPlay();
-  } else {
-    console.log(compare(userChoice, computerChoice));
-    // remove computerPlay function to run only once
-    computerPlay();
-  }
-  // if invalid input
-  if (userChoice != "rock" && userChoice != "paper" && userChoice != "scissors") {
-    console.log("invalid input, please choose 'rock', 'paper' or 'scissors' !");
+    return computerChoice;
   }
 }
-computerPlay();
+
+function playRound() {
+  var playerSelection = prompt("Do you choose rock, paper or scissors?").toLowerCase();
+
+  let computerSelection = getComputerPlay();
+  // if invalid input it will skipp the selection compare but round will still count
+  if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
+    console.log("invalid input, please choose 'rock', 'paper' or 'scissors' !");
+  } else {
+    // logging choices
+    console.log(`You have chosen ${playerSelection} and the computer choose ${computerSelection}`);
+
+    // Tie scenario
+    if (playerSelection === computerSelection) {
+      console.log("its a tie!  Play again!");
+    }
+    // Other scenarios
+    else if (playerSelection === "rock") {
+      if (computerSelection === "scissors") {
+        console.log("You won! Rock beats Scissors");
+        userScore++;
+      } else if (computerSelection === "paper") {
+        console.log("You lost! Paper beats Rock");
+        computerScore++;
+      }
+    } else if (playerSelection === "paper") {
+      if (computerSelection === "rock") {
+        console.log("You won! Paper beats Rock");
+        userScore++;
+      } else if (computerSelection === "scissors") {
+        console.log("You lost! Scissors beats Paper");
+        computerScore++;
+      }
+    } else if (playerSelection === "scissors") {
+      if (computerSelection === "paper") {
+        console.log("You won! Scissors beats Paper");
+        userScore++;
+      } else if (computerSelection === "rock") {
+        console.log("You lost! Rock beats Scissors");
+        computerScore++;
+      }
+    }
+    console.log(`Current score: user ${userScore} <> ${computerScore} computer`);
+    
+  }
+}
+
+function game() {
+  // for loop to run game function 5 times. using this loop could result in a draw.
+  for (let i = 0; i < 5; i++) {
+    playRound();
+    console.log(`Round ${i + 1}`);
+  }
+  if (userScore > computerScore) {
+    console.log("You won the game! Congratulations!");
+  } else if (userScore < computerScore) {
+    console.log("Computer won the game! Try again next time!");
+  } else {
+    console.log("It's a draw!");
+  }
+}
+game();
