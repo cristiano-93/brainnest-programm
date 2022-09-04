@@ -1,0 +1,36 @@
+body{
+    background-color: rgb(200, 200, 200);
+    font-family: 'Roboto', Courier, monospace;
+    justify-content: center;
+    text-align: center;
+}
+.rps{
+    background-color: aqua;
+    width: fit-content;
+    height: 300px;
+    margin: auto;
+}
+.rpsText h1{
+    color: gray;
+}
+.rpsText p {
+    color: brown;
+    font-size: 30px;
+    font-weight: 500;
+}
+.rpsButtons {
+    height: 100px;
+}
+.rpsButtons ul {
+    padding: 0;
+}
+.btn {
+    width: 120px;
+    height: 100px;
+    margin: 10px;   
+    border: 2px solid red;
+    border-radius: 10px; 
+}
+.btn p {
+    font-size: 18px;
+}
