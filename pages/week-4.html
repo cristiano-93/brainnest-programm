@@ -5,23 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Week 4 Projects</title>
-    <link rel="stylesheet" href="../css/week4.css" />
+    <link rel="stylesheet" href="../css/rps.css" />
+    <link rel="stylesheet" href="../css/calc.css" />
   </head>
   <body>
     <div class="rps">
       <h1>Rock Paper Scissors game UI</h1>
       <div class="rpsText">
         <p id="textOutput">Choose wisely!</p>
+        <div class="score">
+          <p id="scoreOutput"></p>
+          <!-- <h2>Player score</h2>
+          <p id="playerScore">0</p>
+          <h2>Computer score</h2>
+          <p id="computerScore">0</p> -->
+        </div>
       </div>
       <div class="rpsButtons">
         <ul>
-          <button id="rockBtn" class="btn"><img src="../assets/images/icons8-rock-50.png" alt="rock button" /><p>Rock</p></button>
-          <button id="paperBtn" class="btn"><img src="../assets/images/icons8-paper-50.png" alt="paper button" /><p>Paper</p></button>
-          <button id="scissorsBtn" class="btn"><img src="../assets/images/icons8-scissors-50.png" alt="scissors button" /><p>Scissors</p></button>
+          <button id="rockBtn" class="btn">
+            <img src="../assets/images/icons8-rock-50.png" alt="rock button" />
+            <p>Rock</p>
+          </button>
+          <button id="paperBtn" class="btn">
+            <img src="../assets/images/icons8-paper-50.png" alt="paper button" />
+            <p>Paper</p>
+          </button>
+          <button id="scissorsBtn" class="btn">
+            <img src="../assets/images/icons8-scissors-50.png" alt="scissors button" />
+            <p>Scissors</p>
+          </button>
         </ul>
       </div>
     </div>
-    <div class="calcDiv"></div>
+    <div class="calcDiv">
+    </div>
     <script src="../js/rps-ui.js"></script>
     <script src="../js/calc.js"></script>
   </body>
