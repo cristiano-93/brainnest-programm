@@ -1,114 +1,185 @@
-let previousOperand = document.getElementById("equation");
-let currentOperand = document.getElementById("answer");
-let operation = null;
-let isCalculated = false;
+// calculator in JavaScript based on 'mrbuddh4' code
 
-const allNumberButtons = document.querySelectorAll("[data-number]");
-const allOperationButtons = document.querySelectorAll("[data-operation]");
-const allClearButton = document.querySelector("[data-all-clear]");
-const deleteButton = document.querySelector("[data-delete]");
-const equalsButton = document.querySelector("[data-equals]");
+let displayValue = "0";
+let firstOperand = null;
+let secondOperand = null;
+let firstOperator = null;
+let secondOperator = null;
+let result = null;
+const buttons = document.querySelectorAll("button");
 
-//Click events
-
-//numbers
-allNumberButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    appendNumber(button.innerText);
-  });
+window.addEventListener("keydown", function (e) {
+  const key = document.querySelector(`button[data-key='${e.keyCode}']`);
+  key.click();
 });
 
-//operations
-allOperationButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    chooseOperation(button.innerText);
-  });
-});
-
-//clear button
-allClearButton.addEventListener("click", () => {
-  clearAll();
-});
-
-//delete button
-deleteButton.addEventListener("click", () => {
-  remove();
-});
-
-//equals button
-equalsButton.addEventListener("click", () => {
-  calculate(operation);
-});
-
-//Logic
-
-function appendNumber(number) {
-  if (number.toString() === "." && currentOperand.innerText.includes(".")) return;
-  if (operation === undefined && isCalculated) {
-    currentOperand.innerText = "";
+function updateDisplay() {
+  const display = document.getElementById("display");
+  display.innerText = displayValue;
+  if (displayValue.length > 9) {
+    display.innerText = displayValue.substring(0, 9);
   }
-  isCalculated = false;
-  currentOperand.innerText += number.toString();
 }
 
-function clearAll() {
-  previousOperand.innerText = "";
-  currentOperand.innerText = "";
-  operation = undefined;
-  isCalculated = false;
-}
+updateDisplay();
 
-function remove() {
-  if (isCalculated) return;
-  currentOperand.innerText = currentOperand.innerText.toString().slice(0, -1);
-}
-
-function chooseOperation(chosenOperation) {
-  if (currentOperand.innerText === "") return;
-  if (previousOperand.innerText != "") {
-    calculate(chosenOperation);
+function clickButton() {
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function () {
+      if (buttons[i].classList.contains("operand")) {
+        inputOperand(buttons[i].value);
+        updateDisplay();
+      } else if (buttons[i].classList.contains("operator")) {
+        inputOperator(buttons[i].value);
+      } else if (buttons[i].classList.contains("equals")) {
+        inputEquals();
+        updateDisplay();
+      } else if (buttons[i].classList.contains("decimal")) {
+        inputDecimal(buttons[i].value);
+        updateDisplay();
+      } else if (buttons[i].classList.contains("percent")) {
+        inputPercent(displayValue);
+        updateDisplay();
+      } else if (buttons[i].classList.contains("sign")) {
+        inputSign(displayValue);
+        updateDisplay();
+      } else if (buttons[i].classList.contains("clear")) clearDisplay();
+      updateDisplay();
+    });
   }
-
-  operation = chosenOperation;
-  previousOperand.innerText = currentOperand.innerText + chosenOperation.toString();
-  currentOperand.innerText = "";
 }
 
-function calculate(chosenOperation) {
-  let calculation = 0;
+clickButton();
 
-  let currentOperation = chosenOperation;
-
-  const previous = parseFloat(previousOperand.innerText.toString());
-  const current = parseFloat(currentOperand.innerText.toString());
-
-  if (isNaN(previous) || isNaN(current)) return;
-
-  switch (currentOperation) {
-    case "+":
-      calculation = previous + current;
-      break;
-    case "-":
-      calculation = previous - current;
-      break;
-    case "x":
-      calculation = previous * current;
-      break;
-    case "/":
-      if (current === 0) {
-        calculation = "Error";
-      } else {
-        calculation = previous / current;
-      }
-      break;
-
-    default:
-      return;
+function inputOperand(operand) {
+  if (firstOperator === null) {
+    if (displayValue === "0" || displayValue === 0) {
+      //1st click - handles first operand input
+      displayValue = operand;
+    } else if (displayValue === firstOperand) {
+      //starts new operation after inputEquals()
+      displayValue = operand;
+    } else {
+      displayValue += operand;
+    }
+  } else {
+    //3rd/5th click - inputs to secondOperand
+    if (displayValue === firstOperand) {
+      displayValue = operand;
+    } else {
+      displayValue += operand;
+    }
   }
-  currentOperand.innerText = calculation;
-  operation = undefined;
-  isCalculated = true;
-  previousOperand.innerText = "";
 }
 
-clearAll();
+function inputOperator(operator) {
+  if (firstOperator != null && secondOperator === null) {
+    //4th click - handles input of second operator
+    secondOperator = operator;
+    secondOperand = displayValue;
+    result = operate(Number(firstOperand), Number(secondOperand), firstOperator);
+    displayValue = roundAccurately(result, 15).toString();
+    firstOperand = displayValue;
+    result = null;
+  } else if (firstOperator != null && secondOperator != null) {
+    //6th click - new secondOperator
+    secondOperand = displayValue;
+    result = operate(Number(firstOperand), Number(secondOperand), secondOperator);
+    secondOperator = operator;
+    displayValue = roundAccurately(result, 15).toString();
+    firstOperand = displayValue;
+    result = null;
+  } else {
+    //2nd click - handles first operator input
+    firstOperator = operator;
+    firstOperand = displayValue;
+  }
+}
+
+function inputEquals() {
+  //hitting equals doesn't display undefined before operate()
+  if (firstOperator === null) {
+    displayValue = displayValue;
+  } else if (secondOperator != null) {
+    //handles final result
+    secondOperand = displayValue;
+    result = operate(Number(firstOperand), Number(secondOperand), secondOperator);
+    if (result === "Infinity") {
+      displayValue = "Infinity";
+    } else {
+      displayValue = roundAccurately(result, 15).toString();
+      firstOperand = displayValue;
+      secondOperand = null;
+      firstOperator = null;
+      secondOperator = null;
+      result = null;
+    }
+  } else {
+    //handles first operation
+    secondOperand = displayValue;
+    result = operate(Number(firstOperand), Number(secondOperand), firstOperator);
+    if (result === "Infinity") {
+      displayValue = "Infinity";
+    } else {
+      displayValue = roundAccurately(result, 15).toString();
+      firstOperand = displayValue;
+      secondOperand = null;
+      firstOperator = null;
+      secondOperator = null;
+      result = null;
+    }
+  }
+}
+
+function inputDecimal(dot) {
+  if (displayValue === firstOperand || displayValue === secondOperand) {
+    displayValue = "0";
+    displayValue += dot;
+  } else if (!displayValue.includes(dot)) {
+    displayValue += dot;
+  }
+}
+
+function inputPercent(num) {
+  displayValue = (num / 100).toString();
+}
+
+function inputSign(num) {
+  displayValue = (num * -1).toString();
+}
+
+function clearDisplay() {
+  displayValue = "0";
+  firstOperand = null;
+  secondOperand = null;
+  firstOperator = null;
+  secondOperator = null;
+  result = null;
+}
+
+function inputBackspace() {
+  if (firstOperand != null) {
+    firstOperand = null;
+    updateDisplay();
+  }
+}
+
+function operate(x, y, op) {
+  if (op === "+") {
+    return x + y;
+  } else if (op === "-") {
+    return x - y;
+  } else if (op === "*") {
+    return x * y;
+  } else if (op === "/") {
+    if (y === 0) {
+      return "let's not break";
+    } else {
+      return x / y;
+    }
+  }
+}
+
+function roundAccurately(num, places) {
+  return parseFloat(Math.round(num + "e" + places) + "e-" + places);
+}
