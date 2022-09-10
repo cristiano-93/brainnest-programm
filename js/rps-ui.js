@@ -29,11 +29,11 @@ playerOptions.forEach((option) => {
   option.addEventListener("click", function () {
     playRound(this.innerText.toLowerCase());
     if (playerScore === 5) {
-      alert("Player has won the match!");
+      alert("Player has won!");
       restartGame();
     }
     if (computerScore === 5) {
-      alert("Computer has won the match!");
+      alert("Computer has won!");
       restartGame();
     }
   });
