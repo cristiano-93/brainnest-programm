@@ -2,7 +2,43 @@ html {
   text-align: center;
   font-family: monospace;
 }
+body {
+  background-color: rgb(221, 221, 221);
+  font-family: "Roboto", Courier, monospace;
+}
+/* RPS Game */
+.rps {
+  width: fit-content;
+  height: 300px;
+  margin: auto;
+}
+.rpsText h1 {
+  color: gray;
+}
+.rpsText p {
+  color: brown;
+  font-size: 30px;
+  font-weight: 500;
+}
+.rpsButtons {
+  height: 100px;
+}
+.rpsButtons ul {
+  padding: 0;
+}
+.btn {
+  width: 120px;
+  height: 100px;
+  margin: 10px;
+  background-color: rgb(200, 200, 200);
+  border: 2px solid rgb(72, 72, 72);
+  border-radius: 10px;
+}
+.btn p {
+  font-size: 18px;
+}
 
+/* Calculator */
 #calc {
   display: flex;
   min-height: 65vh;

@@ -1,4 +1,4 @@
-// calculator in JavaScript based on 'mrbuddh4' code
+// calculator in JavaScript based on user 'mrbuddh4' code
 
 let displayValue = "0";
 let firstOperand = null;

@@ -43,7 +43,9 @@ a:active {
 body {
   background-color: #f5f5f5;
   width: 90%;
-  margin: auto;
+  margin: 10px auto;
+  
+  font-family: 'Roboto';
 }
 
 /* -------------- index.html settings -------------- */
@@ -63,18 +65,18 @@ rounded corners on images
   text-align: center;
   padding: 10px;
   font-size: 50px;
-  font-family: "PT Serif", serif;
+  font-family: 'Roboto';
 }
 .home-title-h3 {
   color: #757575;
   text-align: center;
   font-size: 30px;
   margin: 10px;
-  font-family: "PT Serif", serif;
+  font-family: 'Roboto';
 }
 .btn-1 {
-  background-color: #b7cfff;
-  border: 3px solid rgb(114, 82, 255);
+  background-color: #cdddff;
+  border: 3px solid rgb(182, 167, 255);
   border-radius: 15px;
 
   height: 60px;
@@ -98,7 +100,7 @@ rounded corners on images
   border: 2px solid rgb(98, 98, 98);
   border-radius: 15px;
   width: 40%;
-  height: 100px;
+  /* height: 100px; */
   margin: auto;
   margin-bottom: 30px;
   text-align: center;
@@ -109,6 +111,7 @@ rounded corners on images
   width: 40%;
   margin: auto;
   padding-bottom: 20px;
+  text-align: center;
 }
 .week3 {
   border: 2px solid rgb(98, 98, 98);
@@ -139,8 +142,8 @@ rounded corners on images
   text-align: center;
 }
 .exerc-btn-1 {
-  background-color: #b7cfff;
-  border: 3px solid rgb(114, 82, 255);
+  background-color: #cdddff;
+  border: 3px solid rgb(182, 167, 255);
   border-radius: 15px;
 
   height: 40px;
@@ -153,5 +156,5 @@ rounded corners on images
   text-align: center;
   font-size: 20px;
   margin: 8px;
-  font-family: "PT Serif", serif;
+  font-family: 'Roboto';
 }
