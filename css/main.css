@@ -1,0 +1,160 @@
+@font-face {
+  font-family: "Roboto";
+  src: url(assets/fonts/Roboto-Regular.ttf) format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url(assets/fonts/Roboto-Light.ttf) format("truetype");
+  font-weight: lighter;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url(assets/fonts/Roboto-Bold.ttf) format("truetype");
+  font-weight: bold;
+}
+
+/* -------------- Global settings -------------- */
+
+/* Color palette */
+
+/*      #616161     dark primary color
+        #F5F5F5     light primary color
+        #9E9E9E     primary color
+        #212121     text and icons
+        #536DFE     accent color
+        #212121     primary text
+        #757575     secondary text
+        #BDBDBD     divider color       */
+
+/* removing links underlines */
+a:link {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+a:active {
+  text-decoration: none;
+}
+body {
+  background-color: #f5f5f5;
+  width: 90%;
+  margin: 10px auto;
+  
+  font-family: 'Roboto';
+}
+
+/* -------------- index.html settings -------------- */
+
+/* 
+must have
+background color
+text color
+font family
+font size
+borders
+rounded corners on images
+*/
+
+.home-title-h1 {
+  color: #212121;
+  text-align: center;
+  padding: 10px;
+  font-size: 50px;
+  font-family: 'Roboto';
+}
+.home-title-h3 {
+  color: #757575;
+  text-align: center;
+  font-size: 30px;
+  margin: 10px;
+  font-family: 'Roboto';
+}
+.btn-1 {
+  background-color: #cdddff;
+  border: 3px solid rgb(182, 167, 255);
+  border-radius: 15px;
+
+  height: 60px;
+  width: 30%;
+  margin: 10px auto;
+  padding: 10px;
+  align-items: center;
+}
+.home-logo-div {
+  width: fit-content;
+  margin: 30px auto;
+}
+#brain-logo {
+  height: auto;
+  width: 600px;
+  border-radius: 5%;
+}
+
+/* ------------ exercises.html settings ------------ */
+.week-1 {
+  border: 2px solid rgb(98, 98, 98);
+  border-radius: 15px;
+  width: 40%;
+  /* height: 100px; */
+  margin: auto;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.week-2 {
+  border: 2px solid rgb(98, 98, 98);
+  border-radius: 15px;
+  width: 40%;
+  margin: auto;
+  padding-bottom: 20px;
+  text-align: center;
+}
+.week3 {
+  border: 2px solid rgb(98, 98, 98);
+  border-radius: 15px;
+  width: 40%;
+  margin: 30px auto;
+  padding: 20px 0;
+  text-align: center;
+}
+.week4 {
+  border: 2px solid rgb(98, 98, 98);
+  border-radius: 15px;
+  width: 40%;
+  margin: 30px auto;
+  padding: 20px 0;
+  text-align: center;
+}
+.headings {
+  text-align: center;
+  width: fit-content;
+  margin: auto;
+}
+.headingItem {
+  background-color: #aaaaaa;
+  margin: 5px;
+  height: 40px;
+  width: 200px;
+  text-align: center;
+}
+.exerc-btn-1 {
+  background-color: #cdddff;
+  border: 3px solid rgb(182, 167, 255);
+  border-radius: 15px;
+
+  height: 40px;
+  width: 250px;
+  margin: 8px auto;
+  padding: 8px;
+}
+.exerc-title-h3 {
+  color: #757575;
+  text-align: center;
+  font-size: 20px;
+  margin: 8px;
+  font-family: 'Roboto';
+}
