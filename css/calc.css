@@ -1,0 +1,144 @@
+html {
+  text-align: center;
+  font-family: monospace;
+}
+body {
+  background-color: rgb(221, 221, 221);
+  font-family: "Roboto", Courier, monospace;
+}
+/* RPS Game */
+.rps {
+  width: fit-content;
+  height: 300px;
+  margin: auto;
+}
+.rpsText h1 {
+  color: gray;
+}
+.rpsText p {
+  color: brown;
+  font-size: 30px;
+  font-weight: 500;
+}
+.rpsButtons {
+  height: 100px;
+}
+.rpsButtons ul {
+  padding: 0;
+}
+.btn {
+  width: 120px;
+  height: 100px;
+  margin: 10px;
+  background-color: rgb(200, 200, 200);
+  border: 2px solid rgb(72, 72, 72);
+  border-radius: 10px;
+}
+.btn p {
+  font-size: 18px;
+}
+
+/* Calculator */
+#calc {
+  display: flex;
+  min-height: 65vh;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height: 60vh;
+  overflow: hidden;
+}
+
+#container {
+  background-color: black;
+  border: 10px solid rgba(47, 47, 47, 1);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  grid-template-rows: minmax(100px, auto) repeat(5, 80px);
+  gap: 2px;
+}
+
+#display {
+  grid-column: 1 / -1;
+  background-color: #b2b9b7;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 5px;
+  font-size: 5.5em;
+  font-weight: initial;
+  text-shadow: 1.3px 1.3px #383838;
+  margin: 5px;
+}
+
+#container button {
+  margin: 6px;
+  border-radius: 15%;
+  border: none;
+  font-weight: initial;
+  font-size: 2em;
+  font-family: monospace;
+  color: white;
+}
+
+#zero {
+  grid-column: span 2;
+}
+
+.operator {
+  background-color: #0008e7;
+}
+
+.operator:focus {
+  background-color: #565cff;
+}
+
+.equals {
+  background-color: #00a2e7;
+}
+
+.equals:active {
+  background-color: #006e9e;
+}
+
+.operand {
+  background-color: #6b6b6b;
+}
+
+.operand:active {
+  background-color: #aeaeae;
+}
+
+.decimal {
+  background-color: #6b6b6b;
+}
+
+.decimal:active {
+  background-color: #aeaeae;
+}
+
+.clear {
+  background-color: rgb(110, 1, 193);
+}
+
+.clear:active {
+  background-color: rgb(183, 88, 255);
+}
+
+.sign {
+  background-color: rgb(110, 1, 193);
+}
+
+.sign:active {
+  background-color: rgb(183, 88, 255);
+}
+
+.percent {
+  background-color: rgb(110, 1, 193);
+}
+
+.percent:active {
+  background-color: rgb(183, 88, 255);
+}
